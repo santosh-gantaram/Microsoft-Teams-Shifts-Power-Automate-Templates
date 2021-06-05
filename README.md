@@ -27,6 +27,8 @@ This template collection is to help you create Flows in Power Automate to automa
 1. [Auto Approve Offer Shift Requests](#Auto-Approve-Offer-Shift-Requests)
 2. [Auto Approve Open Shift Requests](#Auto-Approve-Open-Shift-Requests)
 3. [Auto Approve Swap Shifts Requests and Send Email Notification](#Auto-Approve-Swap-Shifts-Requests-and-Send-Email-Notification)
+4. [Auto Convert Shift to Open Shift](#Auto-Convert-Shift-to-Open-Shift)
+5. [Share My Shifts as iCalendar Feed](#Share-My-Shifts-as-iCalendar-Feed)
 
 ### Auto Approve Offer Shift Requests
 Allows a team manager to automatically approve Offer Shift requests in the team.
@@ -55,7 +57,27 @@ Template: [`templates/AutoApproveRequests/AutoAcceptSwapRequestsandEmailNotify.z
 [See template import instructions](#Using-the-templates)
 ![Auto Approve Offer Shift Request](/images/AutoApproveSwapShiftsRequestAndEmail.png)
 
+### Auto Convert Shift to Open Shift
+Allows a team manager to automatically approve the process of converting a Shift into an Open Shift.
 
+> The team member should offer the shift they want to return back to the team manager. With this flow setup to run by a team manager, it'll automatically search for any matching open shifts (with the same start time, end time, theme and group). If a matching Open Shift is found, the slot count is incremented; otherwise a new Open Shift is created from the information in the Shift.
+
+Template: [`templates/AutoApproveRequests/AutoConvertShiftToOpenShift.zip`](/templates/AutoApproveRequests/AutoConvertShiftToOpenShift.zip) 
+[See template import instructions](#Using-the-templates)
+![Auto Convert Shift to Open Shift](/images/AutoConvertShiftToOpenShift.png)
+
+### Share My Shifts as iCalendar Feed
+Allows a user to publish their shifts as an [Internet Calendar](https://en.wikipedia.org/wiki/ICalendar), so they can view their shifts schedule in Outlook or their mobile device calendars
+
+> After importing the template into a new Flow, copy the iCalendar feed URL from the "When a HTTP request is received" action:
+![screenshot](/images/iCalendarFeedLink.png)
+>This URL can then be added as a subscription into most calendar applications like [Outlook](https://support.microsoft.com/en-us/office/import-or-subscribe-to-a-calendar-in-outlook-on-the-web-503ffaf6-7b86-44fe-8dd6-8099d95f38df) and natively on your iOS/Android devices. 
+![screenshot](/images/AddCalendarFromInternet.png)
+>Your calendar app should poll this Flow every hour and automatically get updates to your schedule.
+
+Template: [`templates/Calendar/ShareMyShiftsasiCalendarFeed.zip`](/templates/Calendar/ShareMyShiftsasiCalendarFeed.zip) 
+[See template import instructions](#Using-the-templates)
+![Auto Convert Shift to Open Shift](/images/ShareMyShiftsAsICalendarFeed.png)
 
 ## Prerequisites
 
@@ -86,6 +108,33 @@ Create your team in the Shifts app in [Microsoft Teams](https://teams.microsoft.
     - Select the Team that you want the Flow to operate on (do this for all actions where a Team is referenced)
     - Save the Flow
 
+## PowerBI Templates
+
+**PowerBI Dashboard with Display Name:**
+
+Template: [`/PowerBI/Shifts%20Template%20with%20UserName.pbit`](/PowerBI/Shifts%20Template%20with%20UserName.pbit) 
+
+1. Download excel doc (save to onedrive or a location flow can access), Flow template, PowerBI template
+2. Navigate to [https://flow.microsoft.com/](https://flow.microsoft.com/)
+3. Import flow template and edit it 
+![Alt](/PowerBI/images/importbtn.png?raw=true)
+4. On editing the uploaded flow
+  * Select a team you would like reporting on
+  * Update location/library/file/table to the location of the excel doc
+  * Save and Run the flow.
+  * Download the file when the flow completes and place it in a location for later. (NOTE: Using CTRL + Shift and right clicking will give you the open to copy the file path for later use.)
+  
+![Alt2](PowerBI/images/updateflowfields.png?raw=true)
+
+5. Open the PowerBI template and enter the TeamID (not the name), StartDateTime, EndDateTime (ex: 2020-05-01T00:00:00.000Z), ExcellFileLocation
+6. Click load
+
+**PowerBI Dashboard without Display Name:**
+
+Template: [`/PowerBI/Shifts%20Template.pbit`](/PowerBI/Shifts%20Template.pbit) 
+
+1. Open the PowerBI template and enter the TeamID (not the name), StartDateTime, EndDateTime (ex: 2020-05-01T00:00:00.000Z)
+2. Click load
 
 
 ## Contributing
